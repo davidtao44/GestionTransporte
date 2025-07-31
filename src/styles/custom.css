@@ -1,0 +1,227 @@
+/* Estilos globales para Leaflet */
+@import 'leaflet/dist/leaflet.css';
+
+/* Estilos personalizados para el mapa */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+/* Iconos personalizados para vehículos */
+.vehicle-icon {
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.vehicle-icon.truck {
+  background-color: #2196F3;
+}
+
+.vehicle-icon.bus {
+  background-color: #4CAF50;
+}
+
+.vehicle-icon.train {
+  background-color: #FF9800;
+}
+
+.vehicle-icon.trailer {
+  background-color: #9C27B0;
+}
+
+/* Popup personalizado */
+.custom-popup .leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Estilos para el chatbot */
+.chatbot-fab {
+  position: fixed !important;
+  bottom: 16px !important;
+  right: 16px !important;
+  z-index: 1300 !important;
+}
+
+/* Animaciones suaves */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .mobile-hidden {
+    display: none !important;
+  }
+  
+  .mobile-full-width {
+    width: 100% !important;
+  }
+}
+
+/* Estilos para gráficos */
+.chart-container {
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+
+/* Estilos para tablas responsivas */
+.responsive-table {
+  overflow-x: auto;
+}
+
+/* Estilos para alertas y notificaciones */
+.notification-badge {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Estilos para el layout */
+.main-content {
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar-open .main-content {
+  margin-left: 240px;
+}
+
+/* Estilos para formularios */
+.form-section {
+  margin-bottom: 24px;
+}
+
+.form-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Estilos para cards */
+.metric-card {
+  text-align: center;
+  padding: 20px;
+}
+
+.metric-card .metric-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.metric-card .metric-label {
+  color: #666;
+  font-size: 0.875rem;
+}
+
+/* Estilos para el drag and drop */
+.dropzone {
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.dropzone:hover {
+  border-color: #2196F3;
+}
+
+.dropzone.active {
+  border-color: #4CAF50;
+  background-color: #f0f8f0;
+}
+
+/* Estilos para loading states */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Estilos para tooltips personalizados */
+.custom-tooltip {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* Estilos para status indicators */
+.status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.status-indicator.active {
+  background-color: #4CAF50;
+}
+
+.status-indicator.inactive {
+  background-color: #f44336;
+}
+
+.status-indicator.maintenance {
+  background-color: #FF9800;
+}
+
+/* Estilos para timeline */
+.timeline-item {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 20px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-color: #e0e0e0;
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #2196F3;
+}
+
+/* Estilos para dark mode */
+[data-theme="dark"] {
+  .leaflet-container {
+    filter: invert(1) hue-rotate(180deg);
+  }
+  
+  .leaflet-control-container {
+    filter: invert(1) hue-rotate(180deg);
+  }
+}

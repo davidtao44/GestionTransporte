@@ -199,7 +199,8 @@ const FleetMap = () => {
       display: 'flex', 
       height: 'calc(100vh - 64px)', // Altura total menos la AppBar (64px)
       margin: '-24px', // Compensar el padding del Layout
-      width: 'calc(100% + 48px)' // Compensar el padding horizontal del Layout
+      width: 'calc(100% + 48px)', // Compensar el padding horizontal del Layout
+      position: 'relative'
     }}>
       {/* Panel lateral */}
       <Drawer
@@ -207,13 +208,16 @@ const FleetMap = () => {
         anchor="left"
         open={drawerOpen}
         sx={{
-          width: 350,
+          width: drawerOpen ? 350 : 0,
           flexShrink: 0,
+          transition: 'width 0.3s ease',
           '& .MuiDrawer-paper': {
             width: 350,
             boxSizing: 'border-box',
             position: 'relative',
-            height: '100%'
+            height: '100%',
+            border: 'none',
+            boxShadow: '2px 0 8px rgba(0,0,0,0.1)'
           },
         }}
       >
@@ -360,14 +364,24 @@ const FleetMap = () => {
       </Drawer>
 
       {/* Mapa */}
-      <Box sx={{ flexGrow: 1, position: 'relative' }}>
+      <Box sx={{ 
+        flexGrow: 1, 
+        position: 'relative',
+        width: drawerOpen ? 'calc(100% - 350px)' : '100%',
+        transition: 'width 0.3s ease',
+        minWidth: 0 // Permite que el contenedor se reduzca
+      }}>
         <GoogleMap
           center={mapCenter}
           zoom={12}
           vehicles={filteredVehicles}
           routes={routesData}
           onVehicleClick={handleVehicleSelect}
-          style={{ height: '100%', width: '100%' }}
+          style={{ 
+            height: '100%', 
+            width: '100%',
+            minHeight: 'calc(100vh - 64px)'
+          }}
         />
 
         {/* Botón para alternar panel */}
@@ -375,11 +389,17 @@ const FleetMap = () => {
           <IconButton
             sx={{
               position: 'absolute',
-              top: 10,
-              left: 10,
+              top: 16,
+              left: 16,
               zIndex: 1000,
-              backgroundColor: 'background.paper',
-              '&:hover': { backgroundColor: 'background.paper' }
+              backgroundColor: 'rgba(255, 255, 255, 0.9)',
+              backdropFilter: 'blur(4px)',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+              '&:hover': { 
+                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                transform: 'scale(1.05)'
+              },
+              transition: 'all 0.2s ease'
             }}
             onClick={() => setDrawerOpen(true)}
           >
